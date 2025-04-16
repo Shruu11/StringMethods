@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>String Methods Playground</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #f0f4f8;
+        margin: 0;
+      }
+
+      .container {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 90%;
+        max-width: 500px;
+      }
+
+      input,
+      select,
+      button {
+        width: 100%;
+        margin-top: 1rem;
+        padding: 0.6rem;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        background-color: #2600ff;
+        color: white;
+        cursor: pointer;
+        border: none;
+        transition: background 0.3s;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+      h1 {
+        font-style: italic;
+      }
+
+      #result {
+        margin-top: 1.5rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>JavaScript String Methods</h1>
+      <input
+        type="text"
+        id="inputString"
+        placeholder="Enter your string here"
+      />
+
+      <select id="methodSelect">
+        <option value="toUpperCase">toUpperCase()</option>
+        <option value="toLowerCase">toLowerCase()</option>
+        <option value="trim">trim()</option>
+        <option value="slice">slice(start, end)</option>
+        <option value="replace">replace(find, replace)</option>
+        <option value="charAt">charAt(index)</option>
+        <option value="includes">includes(substring)</option>
+        <option value="length">length()</option>
+        <option value="split">split(separator)</option>
+        <option value="substring">substring(start, end)</option>
+        <option value="startsWith">startsWith(substring)</option>
+        <option value="endsWith">endsWith(substring)</option>
+        <option value="repeat">repeat(times)</option>
+        <option value="padStart">padStart(length, padStr)</option>
+        <option value="padEnd">padEnd(length, padStr)</option>
+      </select>
+
+      <input type="text" id="param1" placeholder="Parameter 1 (if needed)" />
+      <input type="text" id="param2" placeholder="Parameter 2 (if needed)" />
+
+      <button onclick="applyMethod()">Apply Method</button>
+
+      <div id="result"></div>
+    </div>
+
+    <script>
+      function applyMethod() {
+        const inputStr = document.getElementById("inputString").value;
+        const method = document.getElementById("methodSelect").value;
+        const param1 = document.getElementById("param1").value;
+        const param2 = document.getElementById("param2").value;
+
+        let result = "";
+
+        switch (method) {
+          case "toUpperCase":
+            result = inputStr.toUpperCase();
+            break;
+          case "toLowerCase":
+            result = inputStr.toLowerCase();
+            break;
+          case "trim":
+            result = inputStr.trim();
+            break;
+          case "slice":
+            result = inputStr.slice(Number(param1), Number(param2));
+            break;
+          case "replace":
+            result = inputStr.replace(param1, param2);
+            break;
+          case "charAt":
+            result = inputStr.charAt(Number(param1));
+            break;
+          case "includes":
+            result = inputStr.includes(param1)
+              ? "Yes, included"
+              : "No, not included";
+            break;
+          case "length":
+            result = inputStr.length;
+            break;
+          case "split":
+            result = param2
+              ? inputStr.split(param1, Number(param2))
+              : inputStr.split(param1);
+            break;
+          case "substring":
+            result = inputStr.substring(Number(param1), Number(param2));
+            break;
+          case "startsWith":
+            result = inputStr.startsWith(param1)
+              ? "Yes, it starts with it"
+              : "No, it doesn't start with it";
+            break;
+          case "endsWith":
+            result = inputStr.endsWith(param1)
+              ? "Yes, it ends with it"
+              : "No, it doesn't end with it";
+            break;
+          case "repeat":
+            result = inputStr.repeat(Number(param1));
+            break;
+          case "padStart":
+            result = inputStr.padStart(Number(param1), param2);
+            break;
+          case "padEnd":
+            result = inputStr.padEnd(Number(param1), param2);
+            break;
+
+          default:
+            result = "Unknown method";
+        }
+
+        document.getElementById("result").innerText = `Result: ${result}`;
+      }
+    </script>
+  </body>
+</html>
